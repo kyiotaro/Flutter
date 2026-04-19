@@ -9,29 +9,43 @@ class ToDoList extends StatefulWidget {
 }
 
 class _ToDoListState extends State<ToDoList> {
-  String result = "";
+  int moviesCount = 0;
+  List? movies;
   late HttpService service;
+
+  Future initialize() async {
+    movies = await service.getPopularMovies();
+    setState(() {
+      moviesCount = movies?.length ?? 0;
+      movies = movies;
+    });
+  }
 
   @override
   void initState() {
     service = HttpService();
+    initialize();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    service.getPopularMovies()?.then((value) {
-      setState(() {
-        result = value.toString();
-      });
-    });
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("Popular Movies"),
       ),
-      body: Container(
-        child: Text(result),
+      body: ListView.builder(
+        itemCount: moviesCount,
+        itemBuilder: (context, position) {
+          return Card(
+            color: Colors.white,
+            elevation: 2.0,
+            child: ListTile(
+              title: Text(movies![position].title),
+              subtitle: Text("Status: ${movies![position].completed}"),
+            ),
+          );
+        },
       ),
     );
   }
