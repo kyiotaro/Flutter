@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modul_6/service/http_service.dart';
 
+import 'package:flutter_modul_6/pages/movie_detail.dart';
+
 class ToDoList extends StatefulWidget {
   const ToDoList({super.key});
 
@@ -43,6 +45,11 @@ class _ToDoListState extends State<ToDoList> {
             child: ListTile(
               title: Text(movies![position].title),
               subtitle: Text("Status: ${movies![position].completed}"),
+              onTap: () {
+                MaterialPageRoute route = MaterialPageRoute(
+                    builder: (_) => MovieDetail(movies![position]));
+                Navigator.push(context, route);
+              },
             ),
           );
         },
