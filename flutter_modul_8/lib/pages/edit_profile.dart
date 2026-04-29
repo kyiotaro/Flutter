@@ -120,14 +120,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   CircleAvatar(
                     radius: 60,
                     backgroundColor: Colors.white30,
-                    child: CircleAvatar(
+                    child: const CircleAvatar(
                       radius: 56,
-                      child: CircleAvatar(
-                        radius: 56,
-                        backgroundColor: Colors.white30,
-                        backgroundImage:
-                            const AssetImage('assets/profile_pics.jpg'),
-                      ),
+                      backgroundImage: AssetImage('assets/profile_pics.jpg'),
                     ),
                   ),
                   GestureDetector(

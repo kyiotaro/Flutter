@@ -354,7 +354,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         const SizedBox(width: 12),
                         Expanded(
                           child: ElevatedButton(
-                            onPressed: () {
+                            onPressed: () async {
                               final nw = newCtrl.text.trim();
                               final cf = confirmCtrl.text.trim();
 
@@ -373,6 +373,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 );
                                 return;
                               }
+
+                              final prefs =
+                                  await SharedPreferences.getInstance();
+                              await prefs.setString('user_password', nw);
 
                               Get.back();
                               ScaffoldMessenger.of(context).showSnackBar(

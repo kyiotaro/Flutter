@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:flutter_modul_8/pages/profile_screen.dart';
 import 'package:flutter_modul_8/pages/quiz_page.dart';
 import 'dart:async';
@@ -164,16 +165,11 @@ class _LevelTwoQuizPageState extends State<LevelTwoQuizPage> {
     } else {
       // Quiz finished, go to result page
       timer?.cancel();
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => QuizResultPage(
+      Get.off(() => QuizResultPage(
             score: score,
             totalQuestions: questions.length,
             quizType: 'level2',
-          ),
-        ),
-      );
+          ));
     }
   }
 
@@ -501,25 +497,6 @@ class _LevelTwoQuizPageState extends State<LevelTwoQuizPage> {
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 24),
         decoration: BoxDecoration(
           color: getAnswerColor(index).withAlpha((0.3 * 255).round()),
-          border: Border.all(
-            color: getAnswerBorderColor(index),
-            width: 2,
-          ),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Text(
-          answer,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-      ),
-    );
-  }
-}
-AnswerColor(index).withAlpha((0.3 * 255).round()),
           border: Border.all(
             color: getAnswerBorderColor(index),
             width: 2,

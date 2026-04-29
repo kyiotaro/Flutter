@@ -6,6 +6,7 @@ import 'home_page.dart';
 import 'quiz_question_page.dart';
 import 'animal_quiz_question.dart';
 import 'level_two_quiz_page.dart';
+import 'oseanography_quiz_question.dart';
 import 'profile_screen.dart';
 
 class QuizResultPage extends StatelessWidget {
@@ -111,6 +112,8 @@ class QuizResultPage extends StatelessWidget {
                                 nextPage = const AnimalQuizQuestionPage();
                               } else if (quizType == 'level2') {
                                 nextPage = const LevelTwoQuizPage();
+                              } else if (quizType == 'ocean') {
+                                nextPage = const OseanographyQuizQuestion();
                               } else {
                                 nextPage = const QuizQuestionPage();
                               }

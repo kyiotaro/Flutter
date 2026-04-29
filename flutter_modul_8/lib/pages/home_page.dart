@@ -8,8 +8,30 @@ import 'daily_quiz.dart';
 import 'challenges_quiz.dart';
 import 'animal_quiz.dart';
 
-class HomePage extends StatelessWidget {
+import 'package:shared_preferences/shared_preferences.dart';
+
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  String _name = 'User';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadName();
+  }
+
+  Future<void> _loadName() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _name = prefs.getString('user_name') ?? 'User';
+    });
+  }
 
   void _showLeaderboard(BuildContext context) {
     showDialog(
@@ -376,9 +398,9 @@ class HomePage extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text(
-                                "Hello Yurry 👋",
-                                style: TextStyle(
+                              Text(
+                                "Hello $_name 👋",
+                                style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 28,
                                   fontWeight: FontWeight.bold,

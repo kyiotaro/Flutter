@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'dart:async';
 import '../widgets/custom_navbar.dart';
 import '../widgets/ocean_decoration.dart';
 import 'home_page.dart';
+import 'profile_screen.dart';
+import 'quiz_page.dart';
 import 'quiz_result_page.dart';
 
 class AnimalQuizQuestionPage extends StatefulWidget {
@@ -416,11 +419,19 @@ class _AnimalQuizQuestionPageState extends State<AnimalQuizQuestionPage> {
         ),
       ),
       bottomNavigationBar: CustomNavBar(
-        currentIndex: 2,
+        currentIndex: 1,
         onTap: (index) {
-          if (index == 1) {
+          if (index == 0) {
             timer?.cancel();
             Get.off(() => const HomePage());
+          }
+          if (index == 2) {
+            timer?.cancel();
+            Get.off(() => const ProfileScreen());
+          }
+          if (index == 1) {
+            timer?.cancel();
+            Get.off(() => const QuizListPage());
           }
         },
       ),

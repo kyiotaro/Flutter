@@ -202,7 +202,7 @@ class _OseanographyQuizQuestionState extends State<OseanographyQuizQuestion> {
       Get.off(() => QuizResultPage(
             score: score,
             totalQuestions: questions.length,
-            quizType: 'animal',
+            quizType: 'ocean',
           ));
     }
   }
